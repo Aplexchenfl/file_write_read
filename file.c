@@ -13,6 +13,7 @@ struct student
 #define SAVE_FILE  "stu.file"
 #define STU_MAX  50
 struct student stu[STU_MAX];
+int exit_flag = 0;
 
 void show_stu(void)
 {
@@ -104,11 +105,51 @@ int load_stu_score()
     return 0;
 }
 
+void show_interface(void)
+{
+    printf("                please choose :\n");
+    printf("                1.  Add     student score \n");
+    printf("                2.  Load    student score \n");
+    printf("                3.  Save    student score \n");
+    printf("                4.  Show    student score \n");
+    printf("                5.  Change  student score \n");
+    printf("                6.  exit \n");
+}
+
 int main(void)
 {
-    save_stu_score();
+    unsigned int choose_flag;
 
-    //load_stu_score();
-    show_stu();
+    while(!exit_flag)
+    {
+        show_interface();
+
+        printf("Input you choose:");
+        scanf("%d", &choose_flag);
+
+        switch(choose_flag)
+        {
+        case 1:
+            stu_input_while();
+            break;
+        case 2:
+            load_stu_score();
+            break;
+        case 3:
+            save_stu_score();
+            break;
+        case 4:
+            show_stu();
+            break;
+        case 5:
+            break;
+        case 6:
+            return 0;
+            break;
+        default:
+            break;
+        }
+    }
+
     return 0;
 }
